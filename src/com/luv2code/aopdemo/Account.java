@@ -17,5 +17,14 @@ public class Account {
 		this.level = level;
 	}
 	
+	public Account() {}
+	
+	public Account(String name, String level) {
+		this.name = name;
+		this.level = level;
+	}
+	
+	
+	
 	
 }
