@@ -21,17 +21,25 @@ public class MainDemoApp {
 //		call the business method	
 		Account myAccount = new Account();
 		theAccountDAO.addAccount(myAccount, true);
+		System.out.println("\n");
 		theAccountDAO.doWork();
+		System.out.println("\n");
 		
 //		call the account dao getter/setter methods
 		theAccountDAO.setName("foobar");
+		System.out.println("\n");
 		theAccountDAO.setServiceCode("silver");
+		System.out.println("\n");
 		theAccountDAO.getName();
-		theAccountDAO.getServiceCode(); 
+		System.out.println("\n");
+		theAccountDAO.getServiceCode();
+		System.out.println("\n");
 		
 //		call the membership business method
 		membershipDAO.addSillyMember();
+		System.out.println("\n");
 		membershipDAO.goToSleep();
+		System.out.println("\n");
 				
 //		cose the context
 		context.close();
