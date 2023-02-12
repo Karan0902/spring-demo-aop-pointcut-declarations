@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.luv2code.aopdemo.dao.AccountDAO;
 import com.luv2code.aopdemo.dao.MembershipDAO;
 
-public class AfterReturningDemoApp {
+public class AfterThrowingDemoApp {
 
 	public static void main(String[] args) {
 		
@@ -17,11 +17,20 @@ public class AfterReturningDemoApp {
 //		get the beans from container
 		AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
+		
 //		call method to find the accounts
-		List<Account> theAccounts = theAccountDAO.findAccounts(false);
+		List<Account> theAccounts = null;
+		
+		try {
+//			add a boolean flag to simulate an exception
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
+		} catch (Exception e) {
+			System.out.println("\n\nMain Program ... caught exception: " + e);
+		}
 		
 //		display the accounts
-		System.out.println("\n\nMain Program: AfterReturningDemoApp");
+		System.out.println("\n\nMain Program: AfterThrowingDemoApp");
 		System.out.println("----");
 		System.out.println(theAccounts);
 		System.out.println("\n");
