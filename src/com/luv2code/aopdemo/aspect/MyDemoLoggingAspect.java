@@ -26,20 +26,29 @@ public class MyDemoLoggingAspect {
 		
 //		print out method we are advising on
 		String method = proceedingJoinPoint.getSignature().toShortString();
-		System.out.println("\n====>>> Executing @After (Finally) on method: " + method);
+		System.out.println("\n====>>> Executing @Around on method: " + method);
 
 //		get begin timestamp
 		long begin = System.currentTimeMillis();
-		
-//		now, lets execute the method
-		Object resultObject = proceedingJoinPoint.proceed();
+		Object resultObject = null;
+		try {
+//			now, lets execute the method
+			resultObject = proceedingJoinPoint.proceed();
+		} catch (Exception e) {
+			
+//			log the exception
+			System.out.println("warning--->" + e.getMessage());
+			
+//			rethrow the exception
+			throw e;
+		}
 		
 //		get end timestamp
 		long end = System.currentTimeMillis();
 		
 //		compute duration and display it
 		long duration = end - begin;
-		System.out.println("\n====>From the around advice...The time take for execution is: " + duration/1000);
+		System.out.println("\n====>From the around advice... The time take for execution is: " + duration/1000);
 		
 		return resultObject;
 	}
